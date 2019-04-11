@@ -2,7 +2,7 @@ package semantic;
 
 import environment.Environment;
 
-public class Sum<E> extends AbstractSyntaxTree<E> {
+public class Sum<E> extends ArithmeticExpression<E> {
     private ArithmeticExpression<E> exp1;
     private ArithmeticExpression<E> exp2;
 
