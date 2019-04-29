@@ -2,7 +2,7 @@ package semantic;
 
 import environment.Environment;
 
-public abstract class AbstractSyntaxTree<E> {
+public abstract class AbstractSyntaxTree {
 
-    public abstract AbstractSyntaxTree smallStep(Environment<E> environmentState);
+    public abstract AbstractSyntaxTree smallStep(Environment environmentState);
 }

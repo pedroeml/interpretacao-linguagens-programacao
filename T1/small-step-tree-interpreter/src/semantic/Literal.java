@@ -1,18 +1,25 @@
 package semantic;
 
-public class Literal<E> {
-    private E nu;
+import environment.Environment;
 
-    public Literal(E nu) {
+public class Literal extends ArithmeticExpression {
+    private int nu;
+
+    public Literal(int nu) {
         this.nu = nu;
     }
 
-    public E getNu() {
+    @Override
+    public AbstractSyntaxTree smallStep(Environment environmentState) {
+        return this;
+    }
+
+    public int getNu() {
         return nu;
     }
 
     @Override
     public String toString() {
-        return this.nu.toString();
+        return Integer.toString(this.nu);
     }
 }

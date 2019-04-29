@@ -2,22 +2,19 @@ package semantic;
 
 import environment.Environment;
 
-public class Variable<E> {
+public class Variable extends ArithmeticExpression {
     private String varName;
-    private Environment<E> environmentState;
 
-    public Variable(String varName, Environment<E> environmentState) {
+    public Variable(String varName) {
         this.varName = varName;
-        this.environmentState = environmentState;
     }
 
-    public Literal<E> smallStep() throws Exception {
-        Literal<E> literal = this.environmentState.getValue(this.varName);
-        if (literal != null) {
-            return literal;
+    @Override
+    public AbstractSyntaxTree smallStep(Environment environmentState) {
+        if (environmentState.getValue(this.varName) == null) {
+            return new Literal(0);
         } else {
-            throw new Exception("Variable " + this.varName + " not found in the Environment State");
+            return environmentState.getValue(this.varName);
         }
     }
-
 }

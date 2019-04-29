@@ -2,29 +2,28 @@ package semantic;
 
 import environment.Environment;
 
-public class Sum<E> extends ArithmeticExpression<E> {
-    private ArithmeticExpression<E> exp1;
-    private ArithmeticExpression<E> exp2;
+public class Sum extends ArithmeticExpression {
+    private ArithmeticExpression exp1;
+    private ArithmeticExpression exp2;
 
-    public Sum(ArithmeticExpression<E> exp1, ArithmeticExpression<E> exp2) {
+    public Sum(ArithmeticExpression exp1, ArithmeticExpression exp2) {
         this.exp1 = exp1;
         this.exp2 = exp2;
     }
 
     @Override
-    public AbstractSyntaxTree<E> smallStep(Environment<E> environmentState) {
-        if (!(this.exp1 instanceof Literal<E>)) {
-            return new Sum(this.exp1.smallStep(environmentState), exp2);
-        } else if (!(this.exp2 instanceof Literal<E>)) {
-            return new Sum(this.exp1, this.exp2.smallStep(environmentState));
+    public AbstractSyntaxTree smallStep(Environment environmentState) {
+        if (!(this.exp1 instanceof Literal)) {
+            return new Sum((Literal) this.exp1.smallStep(environmentState), this.exp2).smallStep(environmentState);
+        } else if (!(this.exp2 instanceof Literal)) {
+            return new Sum(this.exp1, (Literal) this.exp2.smallStep(environmentState)).smallStep(environmentState);
         } else {
-            return new Literal<E>(this.exp1.getValue() + this.exp2.getValue());
+            return new Literal(((Literal) this.exp1).getNu() + ((Literal) this.exp2).getNu());
         }
     }
 
-
     @Override
     public String toString() {
-        return this.exp1.toString() + " + " + this.exp2.toString();
+        return "(" + this.exp1.toString() + " + " + this.exp2.toString() + ")";
     }
 }
