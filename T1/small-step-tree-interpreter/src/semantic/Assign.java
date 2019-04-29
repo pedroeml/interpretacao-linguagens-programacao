@@ -28,5 +28,8 @@ public class Assign extends AbstractSyntaxTree {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "x := " + this.exp.toString();
+    }
 }

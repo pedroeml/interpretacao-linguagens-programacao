@@ -19,4 +19,9 @@ public class Variable extends ArithmeticExpression {
             return environmentState.getValue(this.varName);
         }
     }
+
+    @Override
+    public String toString() {
+        return this.varName;
+    }
 }
