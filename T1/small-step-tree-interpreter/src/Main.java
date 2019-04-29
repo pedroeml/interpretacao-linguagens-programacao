@@ -5,6 +5,7 @@ import semantic.arith.Sum;
 import semantic.bool.And;
 import semantic.bool.BooleanLiteral;
 import semantic.bool.Not;
+import semantic.bool.Or;
 
 public class Main {
     private static Environment environmentState;
@@ -18,7 +19,7 @@ public class Main {
         AbstractSyntaxTree resultingTree = tree.smallStep(environmentState);
         System.out.println(environmentState.toString());
 
-        tree = new And(new BooleanLiteral(true), new Not(new BooleanLiteral(false)));
+        tree = new And(new Or(new BooleanLiteral(true), new BooleanLiteral(false)), new Not(new BooleanLiteral(false)));
         System.out.printf(tree.toString() + " = " + tree.smallStep(environmentState).toString());
     }
 }
