@@ -1,6 +1,7 @@
-package semantic;
+package semantic.arith;
 
 import environment.Environment;
+import semantic.AbstractSyntaxTree;
 
 public class Literal extends ArithmeticExpression {
     private int nu;

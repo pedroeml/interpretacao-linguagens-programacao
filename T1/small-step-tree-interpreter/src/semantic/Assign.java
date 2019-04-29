@@ -1,6 +1,8 @@
 package semantic;
 
 import environment.Environment;
+import semantic.arith.ArithmeticExpression;
+import semantic.arith.Literal;
 
 public class Assign extends AbstractSyntaxTree {
     private String varName;

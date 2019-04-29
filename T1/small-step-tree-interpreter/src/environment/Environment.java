@@ -1,6 +1,6 @@
 package environment;
 
-import semantic.Literal;
+import semantic.arith.Literal;
 
 import java.util.HashMap;
 import java.util.Iterator;

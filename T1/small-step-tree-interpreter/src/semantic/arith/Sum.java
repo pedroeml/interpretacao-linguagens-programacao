@@ -1,6 +1,7 @@
-package semantic;
+package semantic.arith;
 
 import environment.Environment;
+import semantic.AbstractSyntaxTree;
 
 public class Sum extends ArithmeticExpression {
     private ArithmeticExpression exp1;
