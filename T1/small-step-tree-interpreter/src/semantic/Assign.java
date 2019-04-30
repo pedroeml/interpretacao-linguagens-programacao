@@ -24,12 +24,12 @@ public class Assign extends AbstractSyntaxTree {
                 environmentState.updateEntry(this.varName, (Literal) this.exp);
             }
 
-            return new Skip().smallStep(environmentState);
+            return new Skip();
         }
     }
 
     @Override
     public String toString() {
-        return "x := " + this.exp.toString();
+        return this.varName + " := " + this.exp.toString();
     }
 }
