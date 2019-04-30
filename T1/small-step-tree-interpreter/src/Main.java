@@ -1,42 +1,27 @@
 import environment.Environment;
 import semantic.*;
-import semantic.arith.Literal;
-import semantic.arith.Multiply;
-import semantic.arith.Subtract;
-import semantic.arith.Sum;
+import semantic.arith.*;
 import semantic.bool.*;
-import semantic.relational.Equals;
-import semantic.relational.Greater;
+import semantic.relational.*;
 
 public class Main {
     private static Environment environmentState;
 
     public static void main(String[] args) {
         environmentState =  new Environment();
-        environmentState.addEntry("x", new Literal(10));
-        System.out.println(environmentState.toString());
+        environmentState.addEntry("x", new Literal(17));
+        environmentState.addEntry("y", new Literal(5));
 
-        AbstractSyntaxTree tree = new Assign("x", new Multiply(new Sum(new Variable("x"), new Subtract(new Literal(10), new Literal(5))), new Literal(2)));
-        tree.smallStep(environmentState).toString();
-        System.out.println(tree.toString());
-        System.out.println(environmentState.toString());
-
-        tree = new And(new Or(new Equals(new Literal(5), new Literal(5)), new Greater(new Literal(5), new Literal(3))), new Not(new BooleanLiteral(false)));
-        System.out.println(tree.toString() + " = " + tree.smallStep(environmentState).toString());
-
-        tree = new Sequence(new Assign("x", new Multiply(new Literal(10), new Subtract(new Literal(5), new Literal(2)))), new Assign("y", new Variable("x")));
+        AbstractSyntaxTree tree = new Sequence(
+                new Assign("z", new Literal(0)),
+                new While(
+                        new Or(
+                                new Less(new Variable("y"), new Variable("x")),
+                                new Equals(new Variable("y"), new Variable("x"))),
+                        new Sequence(
+                                new Assign("z", new Sum(new Variable("z"), new Literal(1))),
+                                new Assign("x", new Subtract(new Variable("x"), new Variable("y"))))));
         tree.smallStep(environmentState);
-        System.out.println(tree.toString());
-        System.out.println(environmentState.toString());
 
-        tree = new If(new Not(new Equals(new Variable("x"), new Literal(30))), new Assign("y", new Literal(15)), new Sequence(new Assign("y", new Literal(20)), new Assign("y", new Sum(new Variable("y"), new Literal(2)))));
-        tree.smallStep(environmentState);
-        System.out.println(tree.toString());
-        System.out.println(environmentState.toString());
-
-        tree = new While(new Greater(new Variable("y"), new Literal(0)), new Sequence(new Assign("x", new Subtract(new Variable("x"), new Literal(1))), new Assign("y", new Subtract(new Variable("y"), new Literal(1)))));
-        tree.smallStep(environmentState);
-        System.out.println(tree.toString());
-        System.out.println(environmentState.toString());
     }
 }
