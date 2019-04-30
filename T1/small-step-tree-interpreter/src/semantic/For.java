@@ -4,6 +4,14 @@ import environment.Environment;
 import semantic.bool.BooleanExpression;
 import semantic.bool.BooleanLiteral;
 
+/**
+ * Abstract syntax:
+ *      c ::= ... | for (c1; b; c2) do c3
+ * Small-Step semantic:
+ *      _______________________________________________________________
+ *      <for (c1; b; c2) do { c3 }, s> ->c <c1;while b do { c3;c2 }, s>
+ *
+ */
 public class For extends AbstractSyntaxTree {
     private BooleanExpression b;
     private AbstractSyntaxTree c1;
