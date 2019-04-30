@@ -19,7 +19,7 @@ public class If extends AbstractSyntaxTree {
     public AbstractSyntaxTree smallStep(Environment environmentState) {
         if (!(this.b instanceof BooleanLiteral)) {
             return new If((BooleanExpression) this.b.smallStep(environmentState), this.c1, this.c2).smallStep(environmentState);
-        } else if (((BooleanLiteral) this.b).getBl()){
+        } else if (((BooleanLiteral) this.b).getBl()) {
             return this.c1.smallStep(environmentState);
         } else {
             return this.c2.smallStep(environmentState);
