@@ -33,5 +33,10 @@ public class Main {
         tree.smallStep(environmentState);
         System.out.println(tree.toString());
         System.out.println(environmentState.toString());
+
+        tree = new While(new Greater(new Variable("y"), new Literal(0)), new Sequence(new Assign("x", new Subtract(new Variable("x"), new Literal(1))), new Assign("y", new Subtract(new Variable("y"), new Literal(1)))));
+        tree.smallStep(environmentState);
+        System.out.println(tree.toString());
+        System.out.println(environmentState.toString());
     }
 }
