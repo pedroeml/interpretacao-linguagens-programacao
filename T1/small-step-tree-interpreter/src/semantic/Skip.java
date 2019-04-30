@@ -6,6 +6,7 @@ public class Skip extends AbstractSyntaxTree {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         return this;
     }
 

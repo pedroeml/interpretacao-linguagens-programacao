@@ -13,6 +13,7 @@ public class Variable extends ArithmeticExpression {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         if (environmentState.getValue(this.varName) == null) {
             return new Literal(0);
         } else {

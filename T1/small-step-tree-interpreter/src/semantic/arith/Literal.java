@@ -12,6 +12,7 @@ public class Literal extends ArithmeticExpression {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         return this;
     }
 

@@ -18,6 +18,7 @@ public class Equals extends BooleanExpression {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         if (!(this.exp1 instanceof Literal)) {
             return new Equals((Literal) this.exp1.smallStep(environmentState), this.exp2).smallStep(environmentState);
         } else if (!(this.exp2 instanceof Literal)) {

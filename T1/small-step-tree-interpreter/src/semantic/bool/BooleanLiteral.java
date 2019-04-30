@@ -12,6 +12,7 @@ public class BooleanLiteral extends BooleanExpression {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         return this;
     }
 

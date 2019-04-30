@@ -17,6 +17,7 @@ public class If extends AbstractSyntaxTree {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         if (!(this.b instanceof BooleanLiteral)) {
             return new If((BooleanExpression) this.b.smallStep(environmentState), this.c1, this.c2).smallStep(environmentState);
         } else if (((BooleanLiteral) this.b).getBl()) {

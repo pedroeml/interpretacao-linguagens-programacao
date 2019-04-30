@@ -12,6 +12,7 @@ public class Not extends BooleanExpression {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         if (!(this.exp instanceof BooleanLiteral)) {
             return new Not((BooleanLiteral) this.exp.smallStep(environmentState)).smallStep(environmentState);
         } else {

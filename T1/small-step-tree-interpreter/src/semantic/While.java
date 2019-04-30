@@ -23,6 +23,7 @@ public class While extends AbstractSyntaxTree {
 
     @Override
     public AbstractSyntaxTree smallStep(Environment environmentState) {
+        System.out.println("<" + this.toString() + ", " + environmentState.toString() + ">");
         if (!(this.b instanceof BooleanLiteral)) {
             return new While((BooleanExpression) this.b.smallStep(environmentState), this.c, this.rawB).smallStep(environmentState);
         } else {
@@ -32,6 +33,6 @@ public class While extends AbstractSyntaxTree {
 
     @Override
     public String toString() {
-        return "while " + this.b.toString() + " do { " + this.c.toString() + " } ";
+        return "while " + this.b.toString() + " do { " + this.c.toString() + " }";
     }
 }
