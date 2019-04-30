@@ -4,10 +4,9 @@ import semantic.arith.Literal;
 import semantic.arith.Multiply;
 import semantic.arith.Subtract;
 import semantic.arith.Sum;
-import semantic.bool.And;
-import semantic.bool.BooleanLiteral;
-import semantic.bool.Not;
-import semantic.bool.Or;
+import semantic.bool.*;
+import semantic.relational.Equals;
+import semantic.relational.Greater;
 
 public class Main {
     private static Environment environmentState;
@@ -22,7 +21,17 @@ public class Main {
         System.out.println(tree.toString());
         System.out.println(environmentState.toString());
 
-        tree = new And(new Or(new BooleanLiteral(true), new BooleanLiteral(false)), new Not(new BooleanLiteral(false)));
+        tree = new And(new Or(new Equals(new Literal(5), new Literal(5)), new Greater(new Literal(5), new Literal(3))), new Not(new BooleanLiteral(false)));
         System.out.println(tree.toString() + " = " + tree.smallStep(environmentState).toString());
+
+        tree = new Sequence(new Assign("x", new Multiply(new Literal(10), new Subtract(new Literal(5), new Literal(2)))), new Assign("y", new Variable("x")));
+        tree.smallStep(environmentState);
+        System.out.println(tree.toString());
+        System.out.println(environmentState.toString());
+
+        tree = new If(new Not(new Equals(new Variable("x"), new Literal(30))), new Assign("y", new Literal(15)), new Sequence(new Assign("y", new Literal(20)), new Assign("y", new Sum(new Variable("y"), new Literal(2)))));
+        tree.smallStep(environmentState);
+        System.out.println(tree.toString());
+        System.out.println(environmentState.toString());
     }
 }
